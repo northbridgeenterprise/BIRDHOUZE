@@ -1,0 +1,58 @@
+.wedding-page .nav{position:fixed}
+.wedding-page .nav-links a.current{color:var(--accent)}
+.wedding-hero{height:min(900px,100svh);min-height:680px;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:117px 7% 27px;overflow:hidden;background:#161512}
+.wedding-hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(.68);animation:wedding-image-in 1.6s cubic-bezier(.16,1,.3,1) both}
+.wedding-hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,#11110fdf 0%,#11110f8a 42%,#11110f15 100%),linear-gradient(0deg,#11110f88 0%,transparent 40%,#11110f67 100%)}
+.wedding-hero-top,.wedding-hero-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;gap:20px;color:#d1cec5;font-size:8px;letter-spacing:1.5px}
+.wedding-hero-copy{position:relative;z-index:1;max-width:610px;margin-left:8%;margin-top:20px}
+.wedding-hero-copy h1{font:500 clamp(75px,11vw,150px)/.8 var(--display);letter-spacing:-.09em;margin:27px 0 29px}
+.wedding-hero-copy h1 em{font-family:var(--serif);font-weight:500;letter-spacing:-.06em;color:var(--accent)}
+.wedding-hero-copy>p{max-width:380px;color:#d0cdc4;font-size:13px;line-height:1.8;margin:0}
+.wedding-scroll{display:inline-flex;align-items:center;gap:13px;margin-top:34px;font-size:8px;letter-spacing:1.4px;color:var(--paper);border-bottom:1px solid #f2f0e960;padding-bottom:9px;transition:color .2s,border-color .2s}
+.wedding-scroll span{color:var(--accent)}.wedding-scroll:hover{color:var(--accent);border-color:var(--accent)}
+.wedding-hero-bottom{align-items:center;border-top:1px solid #f2f0e944;padding-top:16px;color:#d1cec5}
+.wedding-hero-bottom span:last-child{color:var(--accent)}
+.wedding-intro{padding:106px 13% 112px;display:grid;grid-template-columns:25% 1fr;column-gap:7%;align-items:start;border-bottom:1px solid var(--line)}
+.wedding-intro .section-kicker{padding-top:14px}
+.wedding-intro>p{font:500 clamp(31px,4.2vw,55px)/1.27 var(--display);letter-spacing:-.055em;margin:0;max-width:850px}
+.wedding-intro>p em{font-family:var(--serif);font-weight:500;color:var(--accent)}
+.wedding-intro-note{grid-column:2;display:flex;align-items:center;gap:14px;margin-top:25px;color:#8e8c83;font-size:8px;letter-spacing:1.3px}
+.wedding-intro-note span:first-child{font-size:19px;color:var(--accent)}
+.wedding-gallery{padding:110px 8% 130px;background:#e8e5dc;color:var(--ink)}
+.wedding-gallery-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:50px}
+.wedding-gallery-head .section-kicker{color:#77756d}.wedding-gallery-head .section-kicker span:first-child{color:#9b7955}
+.wedding-gallery-head h2{font:500 clamp(51px,6.3vw,82px)/.98 var(--display);letter-spacing:-.075em;margin:23px 0 0}
+.wedding-gallery-head h2 em{font-family:var(--serif);font-weight:500;color:#9d7c58}
+.wedding-gallery-total{text-align:right;color:#77756d;font-size:8px;letter-spacing:1.4px;line-height:1.7}
+.wedding-gallery-total b{color:#9d7c58;font:500 25px var(--display);letter-spacing:-1px}
+.wedding-grid{columns:4 210px;column-gap:13px}
+.wedding-photo{display:block;position:relative;width:100%;padding:0;margin:0 0 13px;border:0;background:#d5d2ca;break-inside:avoid;cursor:zoom-in;text-align:left}
+.wedding-photo-frame{display:block;position:relative;overflow:hidden;aspect-ratio:var(--photo-ratio)}
+.wedding-photo img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.78);transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .4s}
+.wedding-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#10100eae,transparent 45%);opacity:0;transition:opacity .35s}
+.wedding-photo-label{position:absolute;left:13px;right:13px;bottom:13px;z-index:1;display:flex;justify-content:space-between;gap:6px;color:#f2f0e9;font-size:7px;letter-spacing:1px;opacity:0;transform:translateY(5px);transition:opacity .3s,transform .3s}
+.wedding-photo:hover img,.wedding-photo:focus-visible img{transform:scale(1.045);filter:saturate(1)}
+.wedding-photo:hover:after,.wedding-photo:focus-visible:after,.wedding-photo:hover .wedding-photo-label,.wedding-photo:focus-visible .wedding-photo-label{opacity:1}
+.wedding-photo:hover .wedding-photo-label,.wedding-photo:focus-visible .wedding-photo-label{transform:translateY(0)}
+.wedding-photo:focus-visible{outline:2px solid #9d7c58;outline-offset:3px}
+.wedding-cta{padding:94px 10%;display:grid;grid-template-columns:1fr 2fr;gap:24px;align-items:start}
+.wedding-cta .section-kicker{padding-top:12px}
+.wedding-cta>p{font:500 clamp(36px,5.4vw,66px)/1.08 var(--display);letter-spacing:-.065em;margin:0}
+.wedding-cta>p em{font-family:var(--serif);font-weight:500;color:var(--accent)}
+.wedding-cta-actions{grid-column:2;display:flex;align-items:center;gap:26px;margin-top:8px}
+.wedding-cta-actions .text-link{font-size:10px}
+.wedding-lightbox{width:100vw;height:100vh;max-width:none;max-height:none;margin:0;padding:64px 82px 32px;border:0;background:#10100ff5;color:var(--paper);grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:22px;overflow:hidden}
+.wedding-lightbox[open]{display:grid;animation:modal-in .28s ease-out}
+.wedding-lightbox::backdrop{background:#080807ed;backdrop-filter:blur(11px)}
+.wedding-lightbox-close,.wedding-lightbox-arrow{border:1px solid #f2f0e942;border-radius:50%;background:#f2f0e912;color:var(--paper);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.wedding-lightbox-close:hover,.wedding-lightbox-arrow:hover{background:var(--accent);color:var(--ink);border-color:var(--accent)}
+.wedding-lightbox-close{position:absolute;right:28px;top:22px;width:42px;height:42px;font-size:27px;line-height:1}
+.wedding-lightbox-arrow{width:42px;height:42px;font-size:18px}
+.wedding-lightbox figure{height:100%;min-width:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:17px}
+.wedding-full-image{display:block;max-width:100%;max-height:calc(100vh - 145px);object-fit:contain}
+.wedding-lightbox figcaption{width:min(100%,1000px);display:flex;justify-content:space-between;align-items:center;color:#aaa89f;font-size:8px;letter-spacing:1.3px}
+.wedding-lightbox-label{color:var(--accent)}
+@keyframes wedding-image-in{from{clip-path:inset(0 0 100% 0);transform:scale(1.04)}to{clip-path:inset(0);transform:scale(1)}}
+@media(max-width:950px){.wedding-grid{columns:3 200px}.wedding-intro{padding-left:8%;padding-right:8%}}
+@media(max-width:650px){.wedding-hero{min-height:720px;height:91svh;padding:97px 7% 24px}.wedding-hero-image{object-position:54% center}.wedding-hero-shade{background:linear-gradient(90deg,#11110fcf 0%,#11110f7a 66%,#11110f23 100%),linear-gradient(0deg,#11110f8a 0%,transparent 45%,#11110f55 100%)}.wedding-hero-top{font-size:7px;letter-spacing:.9px}.wedding-hero-top span:last-child{max-width:155px;text-align:right;line-height:1.6}.wedding-hero-copy{margin:0 0 3vh}.wedding-hero-copy h1{font-size:clamp(72px,18vw,108px);margin:24px 0}.wedding-hero-copy>p{font-size:11px;max-width:290px}.wedding-hero-bottom{font-size:7px;letter-spacing:.8px}.wedding-intro{display:block;padding:77px 7% 82px}.wedding-intro>p{font-size:34px;margin-top:31px}.wedding-intro-note{margin-top:20px;font-size:7px;letter-spacing:.8px}.wedding-gallery{padding:77px 6% 84px}.wedding-gallery-head{margin-bottom:31px}.wedding-gallery-head h2{font-size:54px}.wedding-gallery-total{font-size:7px}.wedding-gallery-total b{font-size:20px}.wedding-grid{columns:2 135px;column-gap:8px}.wedding-photo{margin-bottom:8px}.wedding-photo-label{left:7px;right:7px;bottom:8px;font-size:6px}.wedding-cta{padding:72px 7%;display:block}.wedding-cta>p{font-size:43px;margin:22px 0}.wedding-cta-actions{display:flex;flex-direction:column;align-items:flex-start;gap:18px;margin:18px 0 0}.wedding-cta-actions .button{font-size:9px}.wedding-lightbox{padding:70px 11px 28px;grid-template-columns:31px minmax(0,1fr) 31px;gap:6px}.wedding-lightbox-close{right:15px;top:15px;width:36px;height:36px}.wedding-lightbox-arrow{width:31px;height:31px;font-size:14px}.wedding-full-image{max-height:calc(100vh - 145px)}.wedding-lightbox figcaption{font-size:6px;letter-spacing:.9px}}
+@media(prefers-reduced-motion:reduce){.wedding-hero-image{animation:none}.wedding-photo img,.wedding-photo-label,.wedding-photo:after{transition:none}}

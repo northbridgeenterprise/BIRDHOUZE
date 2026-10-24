@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="Explora la galería completa de Birdhouse Media MX: fotografía, producción audiovisual, eventos, retrato, deporte y marcas.">
+  <title>Galería — Birdhouse Media MX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="gallery.css">
+  <script src="script.js" defer></script>
+  <script src="gallery-data.js" defer></script>
+  <script src="gallery.js" defer></script>
+</head>
+<body class="gallery-page">
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  <div class="loader" aria-hidden="true"><img class="loader-logo" src="IMAGENES/Logo%20Birdhouse%20Media%20MX%20en%20Blanco.png" alt=""><div class="loader-track"><i></i></div></div>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav" id="top">
+    <a class="brand" href="index.html#top" aria-label="Birdhouse Media MX, inicio"><img class="brand-logo" src="IMAGENES/Logo%20Birdhouse%20Media%20MX%20en%20Blanco.png" alt="Birdhouse Media MX"></a>
+    <nav class="nav-links" aria-label="Navegación principal"><a href="index.html#trabajo">Trabajo</a><a class="current" href="galeria.html" aria-current="page">Galería</a><a href="bodas.html">Bodas</a><a href="marcas.html">Marcas</a><a href="index.html#servicios">Servicios</a><a href="index.html#equipo">Equipo</a><a href="precios.html">Precios</a></nav>
+    <a class="nav-cta" href="index.html#contacto">Hablemos <span>↗</span></a>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+  </header>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
+  <main id="main-content">
+    <section class="gallery-hero">
+      <div class="gallery-hero-top"><a href="index.html" class="back-home">← VOLVER AL ESTUDIO</a><span>ARCHIVO VISUAL · MONTERREY, MX</span></div>
+      <div class="gallery-hero-content"><div class="section-kicker"><span>01</span><span>EL UNIVERSO BIRDHOUSE</span></div><h1>Imágenes que<br><em>nos mueven.</em></h1><p>Una mirada completa a las historias que hemos tenido el privilegio de capturar y crear.</p></div>
+      <div class="gallery-hero-bottom"><span><b id="photo-total">133</b> FOTOGRAFÍAS</span><a href="#archivo">EXPLORAR LA GALERÍA <span>↓</span></a><span>DESLIZA PARA DESCUBRIR</span></div>
+      <div class="gallery-hero-art" aria-hidden="true"><img src="IMAGENES/ELDUELO-21-04af89c1-2500.jpg" alt=""></div>
+    </section>
+    <section class="gallery-content" id="archivo">
+      <div class="gallery-toolbar"><div><div class="section-kicker"><span>02</span><span>EL ARCHIVO</span></div><h2>Todo lo que<br><em>hemos visto.</em></h2></div><label class="gallery-search"><span>⌕</span><input id="gallery-search" type="search" placeholder="Buscar una foto…" aria-label="Buscar en la galería"><kbd>/</kbd></label></div>
+      <div class="gallery-controls"><div class="filter-list" role="group" aria-label="Filtrar fotografías"><button class="filter-button active" data-filter="Todo" aria-pressed="true">Todo <span data-count="Todo"></span></button><button class="filter-button" data-filter="Marcas & campañas" aria-pressed="false">Marcas <span data-count="Marcas & campañas"></span></button><button class="filter-button" data-filter="Bodas" aria-pressed="false">Bodas <span data-count="Bodas"></span></button><button class="filter-button" data-filter="Retrato & lifestyle" aria-pressed="false">Retrato & lifestyle <span data-count="Retrato & lifestyle"></span></button><button class="filter-button" data-filter="Gastronomía" aria-pressed="false">Gastronomía <span data-count="Gastronomía"></span></button><button class="filter-button" data-filter="Deporte" aria-pressed="false">Deporte <span data-count="Deporte"></span></button><button class="filter-button" data-filter="Eventos" aria-pressed="false">Eventos <span data-count="Eventos"></span></button></div><span class="results-label" id="results-label" aria-live="polite"></span></div>
+      <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
+      <p class="no-results" hidden>No encontramos imágenes con esa búsqueda. Prueba otra palabra.</p>
+    </section>
+    <section class="gallery-invite"><div class="section-kicker"><span>03</span><span>¿EL SIGUIENTE CAPÍTULO?</span></div><p>Tu proyecto también puede<br>ser parte de <em>esta historia.</em></p><a class="button button-light" href="index.html#contacto">Empecemos a crear <span>↗</span></a></section>
+  </main>
+  <dialog class="lightbox" aria-label="Fotografía ampliada"><button class="lightbox-close" aria-label="Cerrar fotografía">×</button><button class="lightbox-arrow lightbox-prev" aria-label="Fotografía anterior">←</button><figure><img class="lightbox-image" alt=""><figcaption><span class="lightbox-category"></span><span class="lightbox-title"></span><span class="lightbox-count"></span></figcaption></figure><button class="lightbox-arrow lightbox-next" aria-label="Fotografía siguiente">→</button></dialog>
+  <footer class="footer"><a class="brand" href="index.html#top" aria-label="Birdhouse Media MX, volver al inicio"><img class="brand-logo" src="IMAGENES/Logo%20Birdhouse%20Media%20MX%20en%20Blanco.png" alt="Birdhouse Media MX"></a><span>HECHO CON INTENCIÓN EN MONTERREY, MX</span><div class="footer-links"><a href="index.html#trabajo">INICIO ↗</a><a href="mailto:hola@birdhousemediamx.com">EMAIL ↗</a><a href="#top">VOLVER ARRIBA ↑</a></div><small>© <span id="year"></span> BIRDHOUSE MEDIA MX</small></footer>
+</body>
+</html>
