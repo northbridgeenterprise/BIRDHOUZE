@@ -4,6 +4,62 @@ setTimeout(() => loader?.classList.add('done'), 1800);
 
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Controles escénicos de la portada: movimiento ligado al scroll, sin afectar
+// el flujo del documento ni ejecutarse en pantallas táctiles o con movimiento reducido.
+const heroSection = document.querySelector('.hero');
+if (heroSection && !reducedMotion) {
+  let sceneFrame = false;
+  const updateHeroDepth = () => {
+    const bounds = heroSection.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1, -bounds.top / Math.max(1, bounds.height)));
+    heroSection.style.setProperty('--hero-scroll', progress.toFixed(3));
+    sceneFrame = false;
+  };
+  window.addEventListener('scroll', () => {
+    if (!sceneFrame) {
+      sceneFrame = true;
+      requestAnimationFrame(updateHeroDepth);
+    }
+  }, { passive: true });
+  updateHeroDepth();
+}
+
+// Parallax narrativo: las fotografías avanzan con el scroll, como una escena
+// continua. Solo actualizamos las imágenes cercanas al viewport.
+const scrollScenes = [...document.querySelectorAll(
+  '.project-image img, .manifesto-image img, .contact-visual img, .team-photo img'
+)];
+if (scrollScenes.length && !reducedMotion) {
+  const visibleScenes = new Set();
+  const sceneObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => entry.isIntersecting
+      ? visibleScenes.add(entry.target)
+      : visibleScenes.delete(entry.target));
+    requestSceneFrame();
+  }, { rootMargin: '18% 0px 18% 0px', threshold: 0 });
+  scrollScenes.forEach(scene => sceneObserver.observe(scene));
+
+  let sceneFrame = false;
+  function requestSceneFrame() {
+    if (sceneFrame) return;
+    sceneFrame = true;
+    requestAnimationFrame(() => {
+      const viewport = window.innerHeight || 1;
+      visibleScenes.forEach(scene => {
+        const bounds = scene.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1,
+          (viewport - bounds.top) / (viewport + bounds.height)
+        ));
+        scene.style.setProperty('--scene-progress', progress.toFixed(3));
+      });
+      sceneFrame = false;
+    });
+  }
+  window.addEventListener('scroll', requestSceneFrame, { passive: true });
+  window.addEventListener('resize', requestSceneFrame, { passive: true });
+  requestSceneFrame();
+}
+
 const revealObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
