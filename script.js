@@ -72,14 +72,26 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 const nav = document.querySelector('.nav');
 const menuButton = document.querySelector('.menu-toggle');
-menuButton?.addEventListener('click', () => {
-  const open = nav.classList.toggle('menu-open');
+const mobileNavQuery = matchMedia('(max-width: 650px)');
+function setMenuOpen(open, returnFocus = false) {
+  if (!nav || !menuButton) return;
+  nav.classList.toggle('menu-open', open);
+  document.body.classList.toggle('menu-is-open', open && mobileNavQuery.matches);
   menuButton.setAttribute('aria-expanded', String(open));
-});
+  menuButton.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  if (open) nav.querySelector('.nav-links a')?.focus({ preventScroll: true });
+  else if (returnFocus) menuButton.focus({ preventScroll: true });
+}
+menuButton?.addEventListener('click', () => setMenuOpen(!nav.classList.contains('menu-open')));
 document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => {
-  nav.classList.remove('menu-open');
-  menuButton?.setAttribute('aria-expanded', 'false');
+  setMenuOpen(false);
 }));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && nav?.classList.contains('menu-open')) setMenuOpen(false, true);
+});
+mobileNavQuery.addEventListener('change', event => {
+  if (!event.matches) setMenuOpen(false);
+});
 
 // Mantiene orientada la navegación cuando se recorren secciones de esta página.
 const sectionLinks = [...document.querySelectorAll('.nav-links a[href^="#"]')];
