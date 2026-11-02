@@ -11,6 +11,14 @@ document.querySelectorAll('[data-whatsapp-form]').forEach(form => {
 
     const data = new FormData(form);
     const value = name => (data.get(name) || '').toString().trim();
+    const services = data.getAll('service').map(service => service.toString().trim()).filter(Boolean);
+    const serviceGroup = form.querySelector('input[type="checkbox"][name="service"]');
+    const note = form.querySelector('.lead-note');
+    if (serviceGroup && !services.length) {
+      if (note) note.textContent = 'Elige al menos un servicio para que podamos orientar mejor la conversación.';
+      serviceGroup.focus();
+      return;
+    }
     const dateValue = value('timing');
     const timingInput = form.elements.namedItem('timing');
     const timing = timingInput?.type === 'date' && dateValue
@@ -21,17 +29,17 @@ document.querySelectorAll('[data-whatsapp-form]').forEach(form => {
       `Hola Birdhouse, quiero consultar sobre ${form.dataset.area}.`,
       `Nombre: ${value('name')}`,
       `Mi WhatsApp: ${value('phone')}`,
-      `Servicio: ${value('service')}`,
+      ...(value('company') ? [`Empresa o proyecto: ${value('company')}`] : []),
+      `Servicios de interés: ${services.join(', ') || value('service')}`,
       ...(value('coverage') ? [`Cobertura: ${value('coverage')}`] : []),
-      `Fecha o tiempo: ${timing}`,
-      `Ciudad / ubicación: ${value('location')}`,
-      `Inversión aproximada: ${value('budget')}`
+      ...(timing ? [`Fecha o tiempo: ${timing}`] : []),
+      ...(value('location') ? [`Ciudad / ubicación: ${value('location')}`] : []),
+      ...(value('budget') ? [`Inversión aproximada: ${value('budget')}`] : [])
     ];
     if (value('brief')) parts.push(`Detalles: ${value('brief')}`);
 
     const url = `https://wa.me/528121980008?text=${encodeURIComponent(parts.join('\n'))}`;
     const waWindow = window.open(url, '_blank');
-    const note = form.querySelector('.lead-note');
     if (waWindow) {
       waWindow.opener = null;
       if (note) note.textContent = 'WhatsApp se abrió en otra pestaña con tu mensaje listo. Revísalo y envíalo para iniciar la conversación.';

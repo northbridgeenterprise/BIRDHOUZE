@@ -10,7 +10,7 @@ Abre `index.html` en un navegador. Mantén las carpetas de fotografías junto a 
 
 - `index.html`: inicio, servicios, equipo y contacto.
 - `galeria.html`, `bodas.html` y `marcas.html`: portafolios fotográficos.
-- `precios.html`: referencias de precio y preguntas frecuentes.
+- `precios.html`: redirige al formulario de contacto; las propuestas se personalizan por proyecto.
 - `landing-bodas.html`: captación de bodas.
 - `produccion-audiovisual.html`: producción audiovisual.
 - `fotografia-marcas.html`: fotografía comercial.
