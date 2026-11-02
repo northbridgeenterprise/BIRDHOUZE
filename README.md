@@ -15,6 +15,8 @@ Abre `index.html` en un navegador. Mantén las carpetas de fotografías junto a 
 - `produccion-audiovisual.html`: producción audiovisual.
 - `fotografia-marcas.html`: fotografía comercial.
 - `contenido-campanas.html`: contenido y campañas.
+- `comunicacion-politica.html`: producción de contenido para comunicación política.
+- `streaming-cctv.html`: transmisiones en vivo y consultas de CCTV.
 - `eventos-experiencias.html`: eventos y experiencias.
 
 ## Publicación en GitHub Pages
