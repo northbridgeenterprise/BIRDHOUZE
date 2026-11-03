@@ -1,6 +1,8 @@
 # Auditoría UX/UI y propuesta de rediseño premium
 ## Birdhouse Media MX
 
+> **Nota de vigencia (3 de noviembre de 2026):** este documento es un diagnóstico histórico del sitio de Pixieset indicado abajo. No describe la versión estática actual de Birdhouse Media MX ni debe usarse como lista de tareas vigente sin volver a verificar sus observaciones.
+
 **Sitio analizado:** https://birdhousemediamx.mypixieset.com/  
 **Objetivo:** evolucionar la página actual hacia una experiencia digital premium, con una identidad visual coherente, navegación intuitiva y un recorrido claro hacia la contratación.
 

@@ -15,6 +15,7 @@ Abre `index.html` en un navegador. Mantén las carpetas de fotografías junto a 
 - `produccion-audiovisual.html`: producción audiovisual.
 - `fotografia-marcas.html`: fotografía comercial.
 - `contenido-campanas.html`: contenido y campañas.
+- Esa página también presenta producción de podcasts, contenido corto, estrategia digital y diseño gráfico.
 - `comunicacion-politica.html`: producción de contenido para comunicación política.
 - `streaming-cctv.html`: transmisiones en vivo y consultas de CCTV.
 - `eventos-experiencias.html`: eventos y experiencias.
@@ -27,6 +28,10 @@ Abre `index.html` en un navegador. Mantén las carpetas de fotografías junto a 
 4. Cuando Pages termine de publicar, abre la URL que muestra esa sección.
 
 Las rutas de imágenes son relativas al sitio; conserva las carpetas de fotografías y miniaturas al publicar.
+
+## SEO y vistas previas
+
+Las páginas públicas incluyen metadatos Open Graph y Twitter para compartirlas, junto con una URL canónica y una imagen de portada. El dominio de Vercel usado en estas URLs es provisional; actualiza las URLs canónicas, los metadatos, `robots.txt` y `sitemap.xml` cuando se defina el dominio final y antes de publicar.
 
 ## Consultas por WhatsApp
 

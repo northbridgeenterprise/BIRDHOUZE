@@ -20,19 +20,20 @@
   });
 
   photos.forEach((photo, index) => {
+    const photoNumber = String(index + 1).padStart(2, '0');
     const card = document.createElement('button');
     card.className = 'gallery-card';
     card.type = 'button';
     card.dataset.index = index;
     card.dataset.category = photo.category;
-    card.dataset.search = `${photo.title} ${photo.category}`.toLocaleLowerCase('es');
-    card.setAttribute('aria-label', `Abrir foto: ${photo.title}, ${photo.category}`);
+    card.dataset.search = photo.category.toLocaleLowerCase('es');
+    card.setAttribute('aria-label', `Abrir fotografía ${photoNumber}, categoría ${photo.category}`);
     const frame = document.createElement('span');
     frame.className = 'gallery-card-frame';
     frame.style.setProperty('--image-ratio', `${photo.width} / ${photo.height}`);
     const image = document.createElement('img');
     image.src = photo.thumb;
-    image.alt = photo.alt;
+    image.alt = '';
     image.loading = 'lazy';
     image.decoding = 'async';
     const overlay = document.createElement('span');
@@ -79,10 +80,11 @@
   }
   function renderPhoto() {
     const photo = photos[activeIndex];
+    const photoNumber = String(activeIndex + 1).padStart(2, '0');
     dialog.querySelector('.lightbox-image').src = photo.src;
-    dialog.querySelector('.lightbox-image').alt = photo.alt;
+    dialog.querySelector('.lightbox-image').alt = `Fotografía ${photoNumber}, categoría ${photo.category}`;
     dialog.querySelector('.lightbox-category').textContent = photo.category;
-    dialog.querySelector('.lightbox-title').textContent = photo.title;
+    dialog.querySelector('.lightbox-title').textContent = `Fotografía ${photoNumber}`;
     const currentInResults = visiblePhotos.findIndex(item => item === photo) + 1;
     dialog.querySelector('.lightbox-count').textContent = `${String(currentInResults || activeIndex + 1).padStart(2, '0')} / ${String(visiblePhotos.length || photos.length).padStart(2, '0')}`;
   }

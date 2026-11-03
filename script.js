@@ -29,7 +29,7 @@ if (heroSection && !reducedMotion) {
 const scrollScenes = [...document.querySelectorAll(
   '.project-image img, .manifesto-image img, .contact-visual img, .team-photo img'
 )];
-if (scrollScenes.length && !reducedMotion) {
+if (scrollScenes.length && !reducedMotion && 'IntersectionObserver' in window) {
   const visibleScenes = new Set();
   const sceneObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => entry.isIntersecting
@@ -60,15 +60,20 @@ if (scrollScenes.length && !reducedMotion) {
   requestSceneFrame();
 }
 
-const revealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+const revealTargets = [...document.querySelectorAll('.reveal')];
+if ('IntersectionObserver' in window && !reducedMotion) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+  revealTargets.forEach(el => revealObserver.observe(el));
+} else {
+  revealTargets.forEach(el => el.classList.add('in-view'));
+}
 
 const nav = document.querySelector('.nav');
 const menuButton = document.querySelector('.menu-toggle');
@@ -114,6 +119,16 @@ const hero = document.querySelector('.hero-image-wrap');
 const heroImage = document.querySelector('.hero-image');
 const heroLabel = document.querySelector('.hero-scene-label');
 const heroCount = document.querySelector('.hero-count');
+const heroPause = document.querySelector('.hero-pause');
+let sceneManuallyPaused = false;
+let sceneHovered = false;
+let sceneFocused = false;
+function syncHeroTimer() {
+  window.clearInterval(sceneTimer);
+  if (hero && !reducedMotion && !sceneManuallyPaused && !sceneHovered && !sceneFocused) {
+    sceneTimer = window.setInterval(() => showScene(activeScene + 1), 6200);
+  }
+}
 const heroScenes = [
   { src: 'IMAGENES/252682686_10159023003469442_2014153924867748887_n-f86c13a3-2500.jpg', alt: 'Producción lifestyle junto al mar', label: 'PRODUCIR PARA SENTIR', position: 'center 42%' },
   { src: 'IMAGENES/WOWTEC-81-e96a9309-1000.jpg', alt: 'Producción audiovisual en un evento de Monterrey', label: 'CAPTURAR EL MOMENTO', position: 'center 48%' },
@@ -137,18 +152,23 @@ function showScene(index) {
     });
     heroImage.classList.remove('changing');
   }, 180);
-  window.clearInterval(sceneTimer);
-  if (!reducedMotion) sceneTimer = window.setInterval(() => showScene(activeScene + 1), 6200);
+  syncHeroTimer();
 }
 document.querySelector('.hero-prev')?.addEventListener('click', () => showScene(activeScene - 1));
 document.querySelector('.hero-next')?.addEventListener('click', () => showScene(activeScene + 1));
 document.querySelectorAll('.hero-dot').forEach((dot, index) => dot.addEventListener('click', () => showScene(index)));
-if (hero && !reducedMotion) {
-  sceneTimer = window.setInterval(() => showScene(activeScene + 1), 6200);
-  hero.addEventListener('mouseenter', () => window.clearInterval(sceneTimer));
-  hero.addEventListener('mouseleave', () => { sceneTimer = window.setInterval(() => showScene(activeScene + 1), 6200); });
-  hero.addEventListener('focusin', () => window.clearInterval(sceneTimer));
-  hero.addEventListener('focusout', () => { sceneTimer = window.setInterval(() => showScene(activeScene + 1), 6200); });
+heroPause?.addEventListener('click', () => {
+  sceneManuallyPaused = !sceneManuallyPaused;
+  heroPause.setAttribute('aria-pressed', String(sceneManuallyPaused));
+  heroPause.setAttribute('aria-label', sceneManuallyPaused ? 'Reanudar cambio automático' : 'Pausar cambio automático');
+  heroPause.textContent = sceneManuallyPaused ? 'REANUDAR' : 'PAUSAR';
+  syncHeroTimer();
+});
+if (hero) {
+  hero.addEventListener('mouseenter', () => { sceneHovered = true; syncHeroTimer(); });
+  hero.addEventListener('mouseleave', () => { sceneHovered = false; syncHeroTimer(); });
+  hero.addEventListener('focusin', () => { sceneFocused = true; syncHeroTimer(); });
+  hero.addEventListener('focusout', () => { sceneFocused = false; syncHeroTimer(); });
   if (matchMedia('(pointer:fine)').matches) hero.addEventListener('pointermove', event => {
     const bounds = hero.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - .5;
@@ -156,6 +176,7 @@ if (hero && !reducedMotion) {
     hero.style.setProperty('--pointer-x', `${x * 8}px`);
     hero.style.setProperty('--pointer-y', `${y * 8}px`);
   }, { passive: true });
+  syncHeroTimer();
 }
 
 const modal = document.querySelector('.project-modal');
