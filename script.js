@@ -193,6 +193,22 @@ document.querySelector('.modal-close')?.addEventListener('click', () => modal.cl
 modal?.addEventListener('click', event => { if (event.target === modal) modal.close(); });
 modal?.querySelector('.modal-contact')?.addEventListener('click', () => modal.close());
 
+document.querySelectorAll('[data-vimeo-video]').forEach(card => {
+  card.querySelector('[data-vimeo-play]')?.addEventListener('click', () => {
+    const id = card.dataset.vimeoId;
+    if (!id) return;
+    const player = document.createElement('iframe');
+    player.src = `https://player.vimeo.com/video/${encodeURIComponent(id)}?dnt=1`;
+    player.title = `Reproductor de Vimeo: ${card.dataset.vimeoTitle || 'video'}`;
+    player.allow = 'autoplay; fullscreen; picture-in-picture';
+    player.allowFullscreen = true;
+    player.loading = 'lazy';
+    player.referrerPolicy = 'strict-origin-when-cross-origin';
+    card.querySelector('.video-frame')?.replaceChildren(player);
+    card.classList.add('is-playing');
+  }, { once: true });
+});
+
 const progress = document.querySelector('.scroll-progress span');
 let scrollTicking = false;
 window.addEventListener('scroll', () => {
